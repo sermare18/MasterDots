@@ -1,0 +1,21 @@
+body {
+    background-color: #f5f5f5;
+    font-family: 'Poppins', sans-serif;
+}
+header, footer {
+    text-align: center;
+    width: 400px;
+    /* arriba, derecha, abajo, izquierda */
+    /* auto solo se puede utilizar si tenemos definido un width, nos permite centrar horizontalmente el elemento dentro de su contenedor */
+    margin: 30px auto 0px auto; 
+}
+main {
+    width: 400px;
+    margin: 30px auto 0px auto; 
+}
+input {
+    font-family: 'Poppins', sans-serif;
+}
+select {
+    font-family: 'Poppins', sans-serif;
+}
