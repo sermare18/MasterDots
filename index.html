@@ -7,7 +7,8 @@
     <title>Masterdots game</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/estilos.css">
 </head>
@@ -22,6 +23,7 @@
         <form action="#">
             <div class="itemform">
                 <label for="nick">introduce tu nick</label>
+                <input type="text" name="nick" value="@" id="nicka" readonly>
                 <input type="text" name="nick" id="nick">
             </div>
             <div class="itemform">
@@ -32,9 +34,9 @@
                     <option value="2">5x5</option>
                     <option value="3">6x6</option>
                 </select>
-                <div class="itemform">
-                    <input type="submit" value="JUGAR">
-                </div>
+            </div>
+            <div class="itemform">
+                <input type="submit" value="JUGAR">
             </div>
         </form>
     </main>
