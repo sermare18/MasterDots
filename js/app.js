@@ -18,3 +18,8 @@ console.log(tamanoInput.nodeType); // 1
 console.dir(tamanoInput); // Para ver todos sus atributos
 console.log(tamanoInput.value); // Para acceder al valor de atributo value
 console.log(tamanoInput.options[tamanoInput.selectedIndex].text);
+
+// Ejemplo sobre eventos
+function test() {
+    console.log("EVENTO SOBRE RATON");
+}
