@@ -50,6 +50,11 @@ select {
     font-size: 18px;
 }
 
+p {
+    font-weight: 100;
+    font-size: 14px;
+}
+
 footer {
     font-weight: 100;
 }

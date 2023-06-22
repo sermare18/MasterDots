@@ -23,11 +23,12 @@ function comprobarForm (event) {
         error.innerText = "Se debe seleccionar un tamaño de panel"; // Establecemos el mensaje de error
         return false;
     }
+    // Información es correcta
+    datosUsuarios(nickInput);
     return true;
 }
 
 // Inicio de carga de eventos
-
 // El evento submit es desecadenado también al pulsar ENTER dentro del formulario, a parte de dar click al botón de JUGAR de tipo submit
 formEntrada.addEventListener('submit', comprobarForm);
 
