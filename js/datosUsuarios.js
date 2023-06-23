@@ -1,5 +1,7 @@
-/*
+/**
  * JS Para la gestión de los datos de usuario
+ * @author Sergio Martín Reizábal <sergio.mare2002@gmail.com>
+ * @link https://github.com/sermare18/frontend_html_css_js GitHub
  */
 
 var nick;
@@ -8,6 +10,12 @@ var email;
 var geolocalizacionTxt;
 
 // Session Storage
+/**
+ * Almacenar los datos en el sessionStorage
+ * @param {HTMLElement} nick nick del usuario
+ * @param {HTMLElement} tamano tamaño del panel
+ * @param {HTMLElement} email email del usuario
+ */
 function datosUsuarios(nick, tamano, email) {
     // Almacenamos un nuevo elemento en la sesión de la forma clave: valor
     sessionStorage.setItem('nick', nick.value);
