@@ -3,16 +3,23 @@
  */
 
 var nick;
+var tamano;
+var email;
+var geolocalizacionTxt;
 
 // Session Storage
-function datosUsuarios(nick) {
+function datosUsuarios(nick, tamano, email) {
     // Almacenamos un nuevo elemento en la sesión de la forma clave: valor
     sessionStorage.setItem('nick', nick.value);
+    sessionStorage.setItem('tamano', tamano.value);
+    sessionStorage.setItem('email', email.value);
+    sessionStorage.setItem('geolocalizacionTxt', geolocalizacionTxt);
 }
 
 function getDatosUsuario() {
     nick = sessionStorage.getItem('nick');
-    console.log(nick);
+    nick = sessionStorage.getItem('tamano');
+    nick = sessionStorage.getItem('email');
 }
 
 function comprobacionDatosUsuario() {
@@ -21,6 +28,23 @@ function comprobacionDatosUsuario() {
         return false;
     }
     return true;
+}
+
+function datoGeolocalizacion() {
+    if(!navigator.geolocation) {
+        geolocalizacionTxt = "El navegador no es compatible con API Geolocation";
+    } else {
+        navigator.geolocation.getCurrentPosition(
+            // Éxito
+            (position) => {
+                geolocalizacionTxt = `Latitud: ${position.coords.latitude}, longitud: ${position.coords.longitude}`;
+            },
+            // Error
+            (error) => {
+                geolocalizacionTxt = "El navegador no es compatible con API Geolocation";
+            }
+        );
+    }
 }
 
 // Local Storage

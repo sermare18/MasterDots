@@ -5,6 +5,7 @@
 // Inicialización de variables, objetos, DOM
 const nickInput = document.getElementById("nick");
 const tamanoInput = document.getElementById("tamano");
+const emailInput = document.getElementById("email");
 const formEntrada = document.getElementById("formEntrada");
 const error = document.getElementById("error");
 
@@ -30,7 +31,7 @@ function comprobarForm (event) {
         return false;
     }
     // Información es correcta
-    datosUsuarios(nickInput);
+    datosUsuarios(nickInput, tamanoInput, emailInput);
     historicoUsuarios(nickInput);
     return true;
 }
@@ -38,6 +39,8 @@ function comprobarForm (event) {
 // Inicio de carga de eventos
 // El evento submit es desecadenado también al pulsar ENTER dentro del formulario, a parte de dar click al botón de JUGAR de tipo submit
 formEntrada.addEventListener('submit', comprobarForm);
+// Geolocalización
+datoGeolocalizacion();
 
 
 
