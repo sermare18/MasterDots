@@ -8,6 +8,9 @@ var tamanoInput;
 var emailInput;
 var formEntrada;
 var error;
+var avatarItems;
+var itemImg;
+var avatarContainer;
 
 // Funciones de evento
 /**
@@ -34,6 +37,15 @@ function comprobarForm(event) {
     return true;
 }
 
+function moviendoImg(event) {
+    itemImg = event.target
+    // console.dir(itemImg); // Para ver todas sus propiedades
+    console.log(itemImg.src);
+}
+
+function cambiarImg(event) {
+    avatarContainer.src = itemImg.src;
+}
 
 /**
  * Carga de objetos del DOM, comprobaciones y eventos del formulario.
@@ -59,6 +71,25 @@ function domCargado() {
 
     // El evento submit es desecadenado también al pulsar ENTER dentro del formulario, a parte de dar click al botón de JUGAR de tipo submit
     formEntrada.addEventListener('submit', comprobarForm);
+
+    avatarItems = document.getElementsByClassName("avatarImgItem");
+
+    // Eventos del D&D (Drag & Drop)
+    for(let item of avatarItems) {
+        item.addEventListener('dragstart', moviendoImg);
+    }
+
+    avatarContainer = document.getElementById("avatarImg");
+    /*
+     * Un elemento de destino válido es un elemento que ha sido designado para aceptar elementos arrastrables. 
+     * Esto se logra agregando un controlador de eventos para el evento dragover en el elemento de destino y llamando al método 
+     * preventDefault del objeto event dentro del controlador de eventos. Esto cancela el comportamiento predeterminado del 
+     * navegador de no permitir que se suelte un elemento arrastrable en un elemento de destino.
+     */
+    avatarContainer.addEventListener('dragover', (event) => {
+        event.preventDefault();
+    });
+    avatarContainer.addEventListener('drop', cambiarImg);
 
 }
 

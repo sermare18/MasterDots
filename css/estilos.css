@@ -34,11 +34,15 @@ input {
     font-weight: 200;
     font-size: 18px;
 }
+input[type="email"] {
+    border-radius: 5px;
+    width: 278px;
+}
 input[type="submit"] {
     background-color: #fd0c49;
     color: #fff;
     font-weight: 400;
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 5px;
     width: 100%;
 }
 select {
@@ -49,15 +53,24 @@ select {
     font-weight: 200;
     font-size: 18px;
 }
-
 p {
     font-weight: 100;
     font-size: 14px;
 }
-
 footer {
     font-weight: 100;
 }
+
+/* Clases */
+.avatarImgItem {
+    background-color: #fff;
+    border: solid 1px #fd0c49;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+}
+
 /* IDs */
 #nicka {
     /* Hace que este elemento flote a la izquierda dentro de su contenedor */
@@ -79,4 +92,33 @@ footer {
     font-size: 14px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+#avatarform {
+    display: flex;
+    align-items: center;
+}
+#avatar {
+    float: left;
+}
+#avatarContainer {
+    display: flex;
+    background-color: #fff;
+    border: solid 1px #fd0c49;
+    border-radius: 5px;
+    width: 125px;
+    height: 125px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+#avatargrid {
+    display: flex;
+    /* alinea los elementos hijos a lo largo del eje principal (horizontalmente, en este caso) en el centro del contenedor. */
+    justify-content: center;
+    /* alinea los elementos hijos a lo largo del eje transversal (verticalmente, en este caso) en el centro del contenedor. */
+    align-items: center;
+    /* permite que los elementos hijos se ajusten en varias líneas si no hay suficiente espacio para colocarlos en una sola línea. */
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 30px;
 }
