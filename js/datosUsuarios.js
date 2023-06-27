@@ -8,6 +8,7 @@ var nick;
 var tamano;
 var email;
 var geolocalizacionTxt;
+var avatarImg;
 
 // Session Storage
 /**
@@ -16,18 +17,20 @@ var geolocalizacionTxt;
  * @param {HTMLElement} tamano tamaño del panel
  * @param {HTMLElement} email email del usuario
  */
-function datosUsuarios(nick, tamano, email) {
+function datosUsuarios(nick, tamano, email, avatarContainer) {
     // Almacenamos un nuevo elemento en la sesión de la forma clave: valor
     sessionStorage.setItem('nick', nick.value);
     sessionStorage.setItem('tamano', tamano.value);
     sessionStorage.setItem('email', email.value);
     sessionStorage.setItem('geolocalizacionTxt', geolocalizacionTxt);
+    sessionStorage.setItem('avatarImg', avatarContainer.src);
 }
 
 function getDatosUsuario() {
     nick = sessionStorage.getItem('nick');
-    nick = sessionStorage.getItem('tamano');
-    nick = sessionStorage.getItem('email');
+    tamano = sessionStorage.getItem('tamano');
+    email = sessionStorage.getItem('email');
+    avatarImg = sessionStorage.getItem('avatarImg');
 }
 
 function comprobacionDatosUsuario() {
@@ -49,7 +52,7 @@ function datoGeolocalizacion() {
             },
             // Error
             (error) => {
-                geolocalizacionTxt = "El navegador no es compatible con API Geolocation";
+                geolocalizacionTxt = "La geolocalización no se ha podido realizar";
             }
         );
     }

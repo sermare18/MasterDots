@@ -32,7 +32,7 @@ function comprobarForm(event) {
         return false;
     }
     // Información es correcta
-    datosUsuarios(nickInput, tamanoInput, emailInput);
+    datosUsuarios(nickInput, tamanoInput, emailInput, avatarContainer);
     historicoUsuarios(nickInput);
     return true;
 }
