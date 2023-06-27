@@ -2,6 +2,7 @@
  * JS Para el juego Masterdots
  */
 
+/* INCICIALIZACIÓN DEL PANEL */
 /**
  * Devuelve un numero random entre 0 y max
  * @param {Integer} max
@@ -19,6 +20,12 @@ function rellenarFormularioUsuario() {
     document.getElementById("avatarImg").src = avatarImg;
 }
 
+/**
+ * Función que:
+ * 1.- Rellena el nick
+ * 2.- Rellena el avatar
+ * 3.- Pinta de forma automática el panel del juego
+ */
 function pintarPanelJuego() {
     document.getElementById("juego").style.gridTemplateColumns = `repeat(${tamano}, 1fr)`;
     document.getElementById("juego").style.gridTemplateRows = `repeat(${tamano}, 1fr)`;
@@ -27,10 +34,39 @@ function pintarPanelJuego() {
     let color = ["rojo", "verde"];
     let colorRnd = 0;
     for (let index = 0; index < (parseInt(tamano)*parseInt(tamano)); index++) {
+        // En los impares no cambiamos el color, en los pares cambaimos el color
         if (index % 2 > 0) colorRnd = getRandomInt(2);
         items+=`<div class="containerItem"><div class="item ${color[colorRnd]}"></div></div>`;
     }
     document.getElementById("juego").innerHTML = items;
+}
+
+/**
+ * Añadir los eventos al juego
+ */
+function programarEventosJuego() {
+    const items = document.getElementsByClassName("item");
+    // El evento mousedown se dispara cuando el usuario presiona un botón del ratón sobre un elemento. 
+    // Este evento se dispara antes de que el usuario suelte el botón del ratón.
+    // Por otro lado, el evento click se dispara cuando el usuario hace clic en un elemento, es decir, cuando presiona y 
+    // suelta un botón del ratón sobre un elemento. Este evento se dispara después de que el usuario suelte el botón del ratón.
+    for (let item of items) {
+        item.addEventListener('mousedown', comenzarMarcar);
+    }
+}
+
+/* FUNCIONES DEL JUEGO */
+/**
+ * Iniciar el marcado de los dots
+ * @param {EventObject} event
+ */
+function comenzarMarcar(event) {
+    let item = event.target;
+    // Sacamos el element padre de 'item' que es 'containerItem'
+    let containerItem = event.target.parentElement;
+    if(item.classList.contains('rojo')) containerItem.classList.add('rojo');
+    else containerItem.classList.add('verde');
+    console.log("Se ha pinchado sobre un círculo");
 }
 
 // Capturamos los datos del usuario
@@ -40,4 +76,5 @@ if(!comprobacionDatosUsuario()) location = "index.html";
 // Rellenamos el formulario
 rellenarFormularioUsuario();
 pintarPanelJuego();
+programarEventosJuego();
 
