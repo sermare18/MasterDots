@@ -57,6 +57,7 @@ function programarEventosJuego() {
         item.addEventListener('mousedown', comenzarMarcar);
         item.addEventListener('mouseover', continuarMarcando);
     }
+    document.addEventListener('mouseup', finalizarMarcado);
 }
 
 /* FUNCIONES DEL JUEGO */
@@ -75,7 +76,7 @@ function comenzarMarcar(event) {
 }
 
 /**
- * Continuar el marcado de los dots
+ * Continuar el marcando los dots
  * @param {EventObject} event
  */
 function continuarMarcando(event) {
@@ -89,6 +90,14 @@ function continuarMarcando(event) {
     }
 }
 
+/**
+ * Finalizar el marcado de los dots
+ * @param {EventObject} event
+ */
+function finalizarMarcado(event) {
+    iniciadoMarcado = false;
+    console.log("Finalizar el marcado");
+}
 
 /**
  * MAIN
