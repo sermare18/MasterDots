@@ -5,6 +5,7 @@
 // VARIABLES GLOBALES
 var iniciadoMarcado = false;
 var adyacentes = [];
+var classMarcada;
 var tamanoPanel;
 
 /* INCICIALIZACIÓN DEL PANEL */
@@ -55,13 +56,13 @@ function pintarPanelJuego() {
 function calcularAdyacentes(idMarcado) {
     adyacentes = [];
     // Adyacente superior
-    if((idMarcado - tamanoPanel) >= 0) adyacentes.push(idMarcado - tamanoPanel);
+    if ((idMarcado - tamanoPanel) >= 0) adyacentes.push(idMarcado - tamanoPanel);
     // Adyacente inferior
-    if((idMarcado + tamanoPanel) < (tamanoPanel*tamanoPanel)) adyacentes.push(idMarcado + tamanoPanel);
+    if ((idMarcado + tamanoPanel) < (tamanoPanel * tamanoPanel)) adyacentes.push(idMarcado + tamanoPanel);
     // Adyacente izquierda
-    if((idMarcado % tamanoPanel) > 0) adyacentes.push(idMarcado - 1);
+    if ((idMarcado % tamanoPanel) > 0) adyacentes.push(idMarcado - 1);
     // Adyacente derecha
-    if(((idMarcado + 1) % tamanoPanel) > 0) adyacentes.push(idMarcado + 1);
+    if (((idMarcado + 1) % tamanoPanel) > 0) adyacentes.push(idMarcado + 1);
 
     for (let index = 0; index < adyacentes.length; index++) {
         console.log(adyacentes[index]);
@@ -93,9 +94,17 @@ function comenzarMarcar(event) {
     let item = event.target;
     // Sacamos el element padre de 'item' que es 'containerItem'
     let containerItem = event.target.parentElement;
-    if (item.classList.contains('rojo')) containerItem.classList.add('rojo');
-    else containerItem.classList.add('verde');
+    if (item.classList.contains('rojo')) {
+        classMarcada = "rojo";
+        containerItem.classList.add('rojo');
+    } else {
+        classMarcada = "verde";
+        containerItem.classList.add('verde');
+    } 
     if (!iniciadoMarcado) iniciadoMarcado = true;
+
+    // Comienzo a calcular adyacentes
+    calcularAdyacentes(parseInt(item.id));
     console.log("Se ha pinchado sobre un círculo");
 }
 
@@ -106,15 +115,17 @@ function comenzarMarcar(event) {
 function continuarMarcando(event) {
     if (iniciadoMarcado) {
         let item = event.target;
-        // Sacamos el element padre de 'item' que es 'containerItem'
-        let containerItem = event.target.parentElement;
-        if (item.classList.contains('rojo')) containerItem.classList.add('rojo');
-        else containerItem.classList.add('verde');
-        console.log("Pasando sobre un círculo");
-
-        // Test
-        calcularAdyacentes(parseInt(item.id));
+        let idNuevo = parseInt(item.id);
+        // ¿Es adyacente?
+        if (adyacentes.includes(idNuevo) && item.classList.contains(classMarcada)) {
+            // Sacamos el element padre de 'item' que es 'containerItem'
+            let containerItem = event.target.parentElement;
+            if (item.classList.contains('rojo')) containerItem.classList.add('rojo');
+            else containerItem.classList.add('verde');
+            calcularAdyacentes(idNuevo);
+        }
     }
+    console.log("Pasando sobre un círculo");
 }
 
 /**
