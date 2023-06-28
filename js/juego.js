@@ -4,6 +4,8 @@
 
 // VARIABLES GLOBALES
 var iniciadoMarcado = false;
+var adyacentes = [];
+var tamanoPanel;
 
 /* INCICIALIZACIÓN DEL PANEL */
 /**
@@ -21,6 +23,7 @@ function getRandomInt(max) {
 function rellenarFormularioUsuario() {
     document.getElementById("nick").value = nick;
     document.getElementById("avatarImg").src = avatarImg;
+    tamanoPanel = parseInt(tamano);
 }
 
 /**
@@ -39,9 +42,30 @@ function pintarPanelJuego() {
     for (let index = 0; index < (parseInt(tamano) * parseInt(tamano)); index++) {
         // En los impares no cambiamos el color, en los pares cambaimos el color
         if (index % 2 > 0) colorRnd = getRandomInt(2);
-        items += `<div class="containerItem"><div class="item ${color[colorRnd]}"></div></div>`;
+        items += `<div class="containerItem"><div id="${index}" class="item ${color[colorRnd]}"></div></div>`;
     }
     document.getElementById("juego").innerHTML = items;
+}
+
+/**
+ * Description
+ * @param {Integer} idMarcado número marcado
+ * @returns {any}
+ */
+function calcularAdyacentes(idMarcado) {
+    adyacentes = [];
+    // Adyacente superior
+    if((idMarcado - tamanoPanel) >= 0) adyacentes.push(idMarcado - tamanoPanel);
+    // Adyacente inferior
+    if((idMarcado + tamanoPanel) < (tamanoPanel*tamanoPanel)) adyacentes.push(idMarcado + tamanoPanel);
+    // Adyacente izquierda
+    if((idMarcado % tamanoPanel) > 0) adyacentes.push(idMarcado - 1);
+    // Adyacente derecha
+    if(((idMarcado + 1) % tamanoPanel) > 0) adyacentes.push(idMarcado + 1);
+
+    for (let index = 0; index < adyacentes.length; index++) {
+        console.log(adyacentes[index]);
+    }
 }
 
 /**
@@ -87,6 +111,9 @@ function continuarMarcando(event) {
         if (item.classList.contains('rojo')) containerItem.classList.add('rojo');
         else containerItem.classList.add('verde');
         console.log("Pasando sobre un círculo");
+
+        // Test
+        calcularAdyacentes(parseInt(item.id));
     }
 }
 
