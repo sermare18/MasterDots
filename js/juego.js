@@ -129,10 +129,13 @@ function continuarMarcando(event) {
             if (item.classList.contains('rojo')) containerItem.classList.add('rojo');
             else containerItem.classList.add('verde');
 
-            // Guardo los marcados
-            idMarcados.push(parseInt(item.id));
+            // Verificamos si el elemento ya ha sido marcado
+            if (!idMarcados.includes(idNuevo)) {
+                // Guardo los marcados
+                idMarcados.push(parseInt(item.id));
 
-            calcularAdyacentes(idNuevo);
+                calcularAdyacentes(idNuevo);
+            }
         }
     }
     console.log("Pasando sobre un círculo");
