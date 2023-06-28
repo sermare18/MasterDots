@@ -2,6 +2,9 @@
  * JS Para el juego Masterdots
  */
 
+// VARIABLES GLOBALES
+var iniciadoMarcado = false;
+
 /* INCICIALIZACIÓN DEL PANEL */
 /**
  * Devuelve un numero random entre 0 y max
@@ -33,10 +36,10 @@ function pintarPanelJuego() {
     let items = "";
     let color = ["rojo", "verde"];
     let colorRnd = 0;
-    for (let index = 0; index < (parseInt(tamano)*parseInt(tamano)); index++) {
+    for (let index = 0; index < (parseInt(tamano) * parseInt(tamano)); index++) {
         // En los impares no cambiamos el color, en los pares cambaimos el color
         if (index % 2 > 0) colorRnd = getRandomInt(2);
-        items+=`<div class="containerItem"><div class="item ${color[colorRnd]}"></div></div>`;
+        items += `<div class="containerItem"><div class="item ${color[colorRnd]}"></div></div>`;
     }
     document.getElementById("juego").innerHTML = items;
 }
@@ -52,6 +55,7 @@ function programarEventosJuego() {
     // suelta un botón del ratón sobre un elemento. Este evento se dispara después de que el usuario suelte el botón del ratón.
     for (let item of items) {
         item.addEventListener('mousedown', comenzarMarcar);
+        item.addEventListener('mouseover', continuarMarcando);
     }
 }
 
@@ -64,15 +68,35 @@ function comenzarMarcar(event) {
     let item = event.target;
     // Sacamos el element padre de 'item' que es 'containerItem'
     let containerItem = event.target.parentElement;
-    if(item.classList.contains('rojo')) containerItem.classList.add('rojo');
+    if (item.classList.contains('rojo')) containerItem.classList.add('rojo');
     else containerItem.classList.add('verde');
+    if (!iniciadoMarcado) iniciadoMarcado = true;
     console.log("Se ha pinchado sobre un círculo");
 }
 
+/**
+ * Continuar el marcado de los dots
+ * @param {EventObject} event
+ */
+function continuarMarcando(event) {
+    if (iniciadoMarcado) {
+        let item = event.target;
+        // Sacamos el element padre de 'item' que es 'containerItem'
+        let containerItem = event.target.parentElement;
+        if (item.classList.contains('rojo')) containerItem.classList.add('rojo');
+        else containerItem.classList.add('verde');
+        console.log("Pasando sobre un círculo");
+    }
+}
+
+
+/**
+ * MAIN
+ */
 // Capturamos los datos del usuario
 getDatosUsuario();
 // Comprobamos los datos, utilizamos el objeto location para redirigir a index.html si el usuario no ha rellenado el formulario
-if(!comprobacionDatosUsuario()) location = "index.html";
+if (!comprobacionDatosUsuario()) location = "index.html";
 // Rellenamos el formulario
 rellenarFormularioUsuario();
 pintarPanelJuego();
