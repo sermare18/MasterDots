@@ -92,6 +92,8 @@ function programarEventosJuego() {
  * @param {EventObject} event
  */
 function comenzarMarcar(event) {
+    event.preventDefault();
+
     let item = event.target;
     // Sacamos el element padre de 'item' que es 'containerItem'
     let containerItem = event.target.parentElement;
@@ -142,6 +144,12 @@ function continuarMarcando(event) {
  */
 function finalizarMarcado(event) {
     iniciadoMarcado = false;
+    adyacentes = [];
+    // Añadir puntuación
+    const puntuacionInput = document.getElementById('puntuacion');
+    if (idMarcados.length > 1) {
+        puntuacionInput.value = parseInt(puntuacionInput.value) + idMarcados.length;
+    }
     // Trabajar con los marcados
     for (let index = 0; index < idMarcados.length; index++) {
         // Capturar el objeto
@@ -153,6 +161,7 @@ function finalizarMarcado(event) {
         itemMarcado.classList.remove(classMarcada);
         itemMarcado.classList.add(color[colorRnd]);
     }
+    idMarcados = [];
     console.log("Finalizar el marcado");
 }
 
