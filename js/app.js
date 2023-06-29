@@ -98,7 +98,7 @@ function domCargado() {
 document.addEventListener('DOMContentLoaded', domCargado);
 // Geolocalización
 // Esta función no tiene ninguna dependencia con los elementos del DOM, por lo tanto, es mejore dejarla fuera de domCargado, para que se ejecute antes de que se cargue el DOM
-datoGeolocalizacion();
+// datoGeolocalizacion();
 
 
 
