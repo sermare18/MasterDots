@@ -8,6 +8,7 @@ var adyacentes = [];
 var idMarcados = [];
 var classMarcada;
 var tamanoPanel;
+var idInterval;
 
 /* INCICIALIZACIÓN DEL PANEL */
 /**
@@ -71,6 +72,24 @@ function calcularAdyacentes(idMarcado) {
 }
 
 /**
+ * Función que realiza el conteo hacia atrás del juego
+ */
+function cuentaAtras() {
+    let tiempoRestante = parseInt(document.getElementById("tmpo").value) - 1;
+    document.getElementById("tmpo").value = tiempoRestante;
+    if (tiempoRestante == 0) {
+        clearInterval(idInterval);
+        // Finalizar todos los eventos
+        const items = document.getElementsByClassName("item");
+        for (let item of items) {
+            item.removeEventListener('mousedown', comenzarMarcar);
+            item.removeEventListener('mouseover', continuarMarcando);
+        }
+        document.removeEventListener('mouseup', finalizarMarcado);
+    }
+}
+
+/**
  * Añadir los eventos al juego
  */
 function programarEventosJuego() {
@@ -84,6 +103,9 @@ function programarEventosJuego() {
         item.addEventListener('mouseover', continuarMarcando);
     }
     document.addEventListener('mouseup', finalizarMarcado);
+
+    // Cuenta atrás 
+    idInterval = setInterval(cuentaAtras, 1000);
 }
 
 /* FUNCIONES DEL JUEGO */
@@ -103,7 +125,7 @@ function comenzarMarcar(event) {
     } else {
         classMarcada = "verde";
         containerItem.classList.add('verde');
-    } 
+    }
     if (!iniciadoMarcado) iniciadoMarcado = true;
 
     // Guardo los marcados
