@@ -87,6 +87,7 @@ function cuentaAtras() {
         }
         document.removeEventListener('mouseup', finalizarMarcado);
         // Cambiar z-index paneles
+        document.getElementById("juegoAcabado").classList.add("juegoAcabadoColor");
         document.getElementById("juegoAcabado").style.zIndex="2";
         document.getElementById("juego").style.zIndex = "1";
         

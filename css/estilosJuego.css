@@ -66,9 +66,11 @@ img{
 }
 .rojo{
     background-color: #fd0c49;
+    transition: background-color 0.4s;
 }
 .verde{
     background-color: #7ac943;
+    transition: background-color 0.4s;
 }
 #contenedorJuego{
     width: 500px;
@@ -88,13 +90,16 @@ img{
     border: 1px solid #ced4da;
     border-radius: 5px 5px 0px 0px;
 }
+.juegoAcabadoColor{
+    background-color: #263238;
+    transition: background-color 0.4s;
+}
 #juegoAcabado{
     position: absolute;
     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #263238;
     border: 1px solid #ced4da;
     border-radius: 5px 5px 0px 0px;
     width: 500px;
