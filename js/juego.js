@@ -86,6 +86,14 @@ function cuentaAtras() {
             item.removeEventListener('mouseover', continuarMarcando);
         }
         document.removeEventListener('mouseup', finalizarMarcado);
+        // Cambiar z-index paneles
+        document.getElementById("juegoAcabado").style.zIndex="2";
+        document.getElementById("juego").style.zIndex = "1";
+        
+        document.getElementById("nuevaPartida").addEventListener("click", (event) => {
+            // Recargamos la página
+            location.reload();
+        });
     }
 }
 
