@@ -20,7 +20,7 @@ var avatarContainer;
 function comprobarForm(event) {
     // Validación de formulario a nivel de JS (Nivel de seguridad 2 de 3)
     // Si queremos la mayor seguridad posible (Nivel 3 de 3) tendríamos que utilizar un backend como una db y un framework p.e Laravel, Spring, .NET, etc
-    if (nickInput.value.match(/(?<!\S)[0-9]/)) { // Con la funnción 'match()' comprobamos que el string cumpla un determinada expresión regular, en este caso que no comience por un número
+    if (nickInput.value.match(/^\d/)) { // Con la funnción 'match()' comprobamos que el string cumpla un determinada expresión regular, en este caso que no comience por un número
         nickInput.focus(); // El cursor se colocará en el input automáticamente
         event.preventDefault(); // Evitamos que se haga el submit
         error.innerText = "El campo de nick no puede comenzar con un número"; // Establecemos el mensaje de error
