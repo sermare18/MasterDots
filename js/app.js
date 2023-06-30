@@ -76,6 +76,8 @@ function domCargado() {
 
     // Eventos del D&D (Drag & Drop)
     for(let item of avatarItems) {
+        item.addEventListener('click', moviendoImg);
+        item.addEventListener('click', cambiarImg);
         item.addEventListener('dragstart', moviendoImg);
     }
 

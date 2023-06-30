@@ -1,39 +1,35 @@
 /*Elementos generales*/
-body{
+body {
     background-color: #f5f5f5;
     font-family: 'Poppins', sans-serif;
 }
-footer{
+
+footer {
     margin: 30px auto 0px auto;
     text-align: center;
-    width:800px;
+    width: 800px;
     font-weight: 100;
 }
-main{
+
+main {
     display: flex;
     margin: 30px auto 0px auto;
     width: 800px;
 }
-@media (max-width: 800px){ /*Cuando tengamos una anchura menor de 800px*/
-    main{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        row-gap: 40px;
-    }
-}
-form{
+
+form {
     font-size: 18px;
     display: flex;
     flex-direction: column;
     row-gap: 20px;
 }
-label{
+
+label {
     display: block;
     margin-bottom: 10px;
 }
-input{
+
+input {
     display: inline;
     font-family: 'Poppins', sans-serif;
     width: 200px;
@@ -43,23 +39,26 @@ input{
     font-weight: 200;
     font-size: 18px;
 }
-p{
+
+p {
     font-weight: 100;
     font-size: 14px;
 }
-img{
-    float:left;
+
+img {
+    float: left;
     border: 1px solid #ced4da;
     padding: 10px;
     border-radius: 5px 0px 0px 5px;
 }
 
 /*Selectores Juego*/
-.inputJuego{
+.inputJuego {
     border-radius: 5px;
     width: 230px;
 }
-.containerItem{
+
+.containerItem {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,25 +66,30 @@ img{
     min-height: 75px;
     border-radius: 5px;
 }
-.item{
+
+.item {
     border-radius: 45px;
     border: solid 10px #fff;
     width: 35px;
     height: 35px;
 }
-.rojo{
+
+.rojo {
     background-color: #fd0c49;
     transition: background-color 0.4s;
 }
-.verde{
+
+.verde {
     background-color: #7ac943;
     transition: background-color 0.4s;
 }
-#contenedorJuego{
+
+#contenedorJuego {
     width: 500px;
     margin-right: 10px;
 }
-#juego{
+
+#juego {
     position: absolute;
     z-index: 2;
     display: grid;
@@ -99,11 +103,13 @@ img{
     border: 1px solid #ced4da;
     border-radius: 5px 5px 0px 0px;
 }
-.juegoAcabadoColor{
+
+.juegoAcabadoColor {
     background-color: #263238;
     transition: background-color 0.4s;
 }
-#juegoAcabado{
+
+#juegoAcabado {
     position: absolute;
     z-index: 1;
     display: flex;
@@ -114,7 +120,8 @@ img{
     width: 500px;
     height: 450px;
 }
-#juegoAcabado button{
+
+#juegoAcabado button {
     background-color: #fff;
     border: 1px solid #ced4da;
     padding-top: 10px;
@@ -125,7 +132,8 @@ img{
     border-radius: 5px;
     width: 200px;
 }
-#tituloJuego{
+
+#tituloJuego {
     margin-top: 450px;
     width: 500px;
     background-color: #263238;
@@ -136,10 +144,40 @@ img{
     color: #fff;
     text-align: center;
 }
-#tituloJuego p{
+
+#tituloJuego p {
     font-size: 24px;
     font-weight: 400;
 }
-#contenedorUsuario{
+
+#contenedorUsuario {
     width: 290px;
+}
+
+/* DISEÑO RESPONSIVE */
+@media (max-width: 800px) {
+
+    /*Cuando tengamos una anchura menor de 800px*/
+
+    body {
+        zoom: 0.75;
+        -moz-transform: scale(0.75);
+        -moz-transform-origin: 0 0;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 40px;
+        margin: auto;
+        width: 100%;
+    }
+
+    footer {
+        width: auto;
+    }
 }
