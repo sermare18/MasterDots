@@ -14,6 +14,15 @@ main{
     margin: 30px auto 0px auto;
     width: 800px;
 }
+@media (max-width: 800px){ /*Cuando tengamos una anchura menor de 800px*/
+    main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 40px;
+    }
+}
 form{
     font-size: 18px;
     display: flex;

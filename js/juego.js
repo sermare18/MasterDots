@@ -108,10 +108,19 @@ function programarEventosJuego() {
     // Por otro lado, el evento click se dispara cuando el usuario hace clic en un elemento, es decir, cuando presiona y 
     // suelta un botón del ratón sobre un elemento. Este evento se dispara después de que el usuario suelte el botón del ratón.
     for (let item of items) {
+        // Eventos para ratón
         item.addEventListener('mousedown', comenzarMarcar);
         item.addEventListener('mouseover', continuarMarcando);
+
+        // Eventos para dispositivos táctiles
+        item.addEventListener('touchstart', comenzarMarcar);
+        item.addEventListener('touchmove', continuarMarcando);
     }
+    // Eventos para ratón
     document.addEventListener('mouseup', finalizarMarcado);
+
+    // Eventos para dispositivos táctiles
+    document.addEventListener('touchend', finalizarMarcado);
 
     // Cuenta atrás 
     idInterval = setInterval(cuentaAtras, 1000);
@@ -151,12 +160,18 @@ function comenzarMarcar(event) {
  */
 function continuarMarcando(event) {
     if (iniciadoMarcado) {
-        let item = event.target;
+        let item;
+        if (event.type === 'touchmove') {
+            let touch = event.touches[0];
+            item = document.elementFromPoint(touch.clientX, touch.clientY);
+        } else {
+            item = event.target;
+        }
         let idNuevo = parseInt(item.id);
         // ¿Es adyacente?
         if (adyacentes.includes(idNuevo) && item.classList.contains(classMarcada)) {
             // Sacamos el element padre de 'item' que es 'containerItem'
-            let containerItem = event.target.parentElement;
+            let containerItem = item.parentElement;
             if (item.classList.contains('rojo')) containerItem.classList.add('rojo');
             else containerItem.classList.add('verde');
 
