@@ -66,9 +66,9 @@ function calcularAdyacentes(idMarcado) {
     // Adyacente derecha
     if (((idMarcado + 1) % tamanoPanel) > 0) adyacentes.push(idMarcado + 1);
 
-    for (let index = 0; index < adyacentes.length; index++) {
-        console.log(adyacentes[index]);
-    }
+    // for (let index = 0; index < adyacentes.length; index++) {
+    //     console.log(adyacentes[index]);
+    // }
 }
 
 /**
@@ -84,8 +84,11 @@ function cuentaAtras() {
         for (let item of items) {
             item.removeEventListener('mousedown', comenzarMarcar);
             item.removeEventListener('mouseover', continuarMarcando);
+            item.removeEventListener('touchstart', comenzarMarcar);
+            item.removeEventListener('touchmove', continuarMarcando);
         }
         document.removeEventListener('mouseup', finalizarMarcado);
+        document.removeEventListener('touchend', finalizarMarcado);
         // Cambiar z-index paneles
         document.getElementById("juegoAcabado").classList.add("juegoAcabadoColor");
         document.getElementById("juegoAcabado").style.zIndex="2";
@@ -151,7 +154,7 @@ function comenzarMarcar(event) {
 
     // Comienzo a calcular adyacentes
     calcularAdyacentes(parseInt(item.id));
-    console.log("Se ha pinchado sobre un círculo");
+    // console.log("Se ha pinchado sobre un círculo");
 }
 
 /**
@@ -184,7 +187,7 @@ function continuarMarcando(event) {
             }
         }
     }
-    console.log("Pasando sobre un círculo");
+    // console.log("Pasando sobre un círculo");
 }
 
 /**
@@ -211,7 +214,7 @@ function finalizarMarcado(event) {
         itemMarcado.classList.add(color[colorRnd]);
     }
     idMarcados = [];
-    console.log("Finalizar el marcado");
+    // console.log("Finalizar el marcado");
 }
 
 /**
